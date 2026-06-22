@@ -1,0 +1,23 @@
+# One-click-ish deploy config for Render.com
+services:
+  - type: web
+    name: gower-websites
+    runtime: node
+    plan: starter            # small paid plan; needed for a persistent disk
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /living
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /data
+      - key: SESSION_SECRET
+        generateValue: true   # Render creates a long random secret
+      - key: ADMIN_PASSWORD
+        sync: false           # you set this in the dashboard (keep it private)
+    disk:
+      name: gower-data        # keeps applications.json across deploys/restarts
+      mountPath: /data
+      sizeGB: 1

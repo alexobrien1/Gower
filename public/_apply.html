@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply for a home — {{SITE}}</title>
+<link rel="icon" href="/assets/svg/gower-monogram-navy.svg">
+<link rel="stylesheet" href="/brand.css">
+</head>
+<body class="apply-body">
+  <div class="{{THEME}}">
+    <div class="wrap apply-head" style="display:flex;align-items:center;justify-content:space-between">
+      <img class="logo" src="{{LOGO}}" alt="{{SITE}}">
+      <a class="btn btn-ghost" href="{{HOME}}">← Back to site</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="formwrap">
+      <div class="banner">
+        <h1>Apply for a home<span class="gold">.</span></h1>
+        <p>Tell us about yourself and what you need. Everything you share is held securely and used only to assess your application and arrange the right home and support. Fields marked <span style="color:var(--bright-gold)">*</span> are required.</p>
+      </div>
+      <div id="formMsg"></div>
+      <form id="applyForm" novalidate>
+        <input type="hidden" name="site" value="{{SITE}}">
+        <div class="errlist" id="errlist"></div>
+
+        <fieldset>
+          <legend>About you</legend>
+          <div class="row3">
+            <div class="field"><label>Title</label>
+              <select name="title"><option value=""></option><option>Mr</option><option>Mrs</option><option>Miss</option><option>Ms</option><option>Mx</option><option>Other</option></select></div>
+            <div class="field"><label>First name <span class="req">*</span></label><input type="text" name="firstName" required></div>
+            <div class="field"><label>Last name <span class="req">*</span></label><input type="text" name="lastName" required></div>
+          </div>
+          <div class="row3">
+            <div class="field"><label>Date of birth <span class="req">*</span></label><input type="date" name="dob" required></div>
+            <div class="field"><label>Gender</label>
+              <select name="gender"><option value=""></option><option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option></select></div>
+            <div class="field"><label>National Insurance no.</label><input type="text" name="ni" placeholder="QQ 12 34 56 C"></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" required></div>
+            <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Next of kin / emergency contact</legend>
+          <div class="row2">
+            <div class="field"><label>Name</label><input type="text" name="nokName"></div>
+            <div class="field"><label>Relationship to you</label><input type="text" name="nokRelation" placeholder="e.g. mother, brother, friend"></div>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Phone</label><input type="tel" name="nokPhone"></div>
+            <div class="field"><label>Email</label><input type="email" name="nokEmail"></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your current housing</legend>
+          <div class="field"><label>Where are you living now? <span class="req">*</span></label>
+            <select name="situation" id="situation" required>
+              <option value=""></option>
+              <option>Temporary / emergency accommodation</option>
+              <option>Homeless / no fixed abode</option>
+              <option>Leaving prison or custody</option>
+              <option>Private rented</option>
+              <option>Living with family or friends</option>
+              <option>Social housing</option>
+              <option>Other</option>
+            </select></div>
+          <div class="cond" id="tempCond">
+            <div class="row2">
+              <div class="field"><label>Who provides it? (council, hostel, hotel…)</label><input type="text" name="tempProvider"></div>
+              <div class="field"><label>Date you moved in</label><input type="date" name="tempSince"></div>
+            </div>
+            <p class="note">This helps us see how long you've been in temporary accommodation.</p>
+          </div>
+          <div class="field"><label>Current address</label><input type="text" name="address" placeholder="Street, town, postcode"></div>
+          <div class="field"><label>Why are you looking for a home? <span class="req">*</span></label><textarea name="why" required></textarea></div>
+          <div class="field"><label>Preferred area or type of home</label><input type="text" name="preference" placeholder="e.g. a room in Swansea, or a whole house in Neath"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Sharing &amp; household</legend>
+          <p class="hint">Many of our homes are shared houses. This helps us place you well.</p>
+          <div class="field"><label>Would you be happy to share a house with one other person? <span class="req">*</span></label>
+            <div class="radio-inline">
+              <label><input type="radio" name="willShare" value="Yes" required>Yes</label>
+              <label><input type="radio" name="willShare" value="Maybe">Maybe</label>
+              <label><input type="radio" name="willShare" value="No">No, I need my own place</label>
+            </div></div>
+          <div class="field"><label>Is there someone you'd like to share with, so we can house the two of you together?</label>
+            <div class="radio-inline">
+              <label><input type="radio" name="shareWith" value="No">No</label>
+              <label><input type="radio" name="shareWith" value="Yes">Yes</label>
+            </div></div>
+          <div class="cond" id="shareCond">
+            <div class="row3">
+              <div class="field"><label>Their name</label><input type="text" name="sharePerson"></div>
+              <div class="field"><label>Your relationship to them</label><input type="text" name="shareRelation"></div>
+              <div class="field"><label>Their phone (if known)</label><input type="tel" name="sharePhone"></div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Money</legend>
+          <p class="hint">This helps us check the home is affordable and set up rent payments smoothly.</p>
+          <div class="field"><label>Which benefits do you receive? <span class="req">*</span></label>
+            <div class="checks" id="benefits">
+              <label><input type="checkbox" name="benefit" value="Universal Credit">Universal Credit</label>
+              <label><input type="checkbox" name="benefit" value="PIP">PIP</label>
+              <label><input type="checkbox" name="benefit" value="LCWRA">UC – LCWRA</label>
+              <label><input type="checkbox" name="benefit" value="Housing Benefit">Housing Benefit</label>
+              <label><input type="checkbox" name="benefit" value="ESA">ESA</label>
+              <label><input type="checkbox" name="benefit" value="None - working">None – I'm working</label>
+              <label><input type="checkbox" name="benefit" value="Other">Other</label>
+            </div>
+          </div>
+          <div class="cond" id="ucCond">
+            <div class="row3">
+              <div class="field"><label>UC housing element (£ / month)</label><input type="number" name="ucHousing" min="0" step="1"></div>
+              <div class="field"><label>Day of month UC is paid</label><input type="text" name="ucDay" placeholder="e.g. 9th"></div>
+              <div class="field"><label>How long on Universal Credit?</label>
+                <select name="ucDuration"><option value=""></option><option>Under 6 months</option><option>6–12 months</option><option>1–2 years</option><option>2+ years</option></select></div>
+            </div>
+          </div>
+          <div class="cond" id="pipCond">
+            <div class="row2">
+              <div class="field"><label>PIP (£ / month)</label><input type="number" name="pipAmount" min="0" step="1"></div>
+              <div class="field"><label>How long on PIP?</label>
+                <select name="pipDuration"><option value=""></option><option>Under 6 months</option><option>6–12 months</option><option>1–2 years</option><option>2+ years</option></select></div>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field"><label>Approx. total monthly income (£)</label><input type="number" name="income" min="0" step="1"></div>
+            <div class="field"><label>Employment status</label>
+              <select name="employment"><option value=""></option><option>Not working</option><option>Part-time</option><option>Full-time</option><option>Agency / casual</option></select></div>
+          </div>
+          <div class="field"><label>Are you happy for the rent to be paid straight to the landlord from your Universal Credit (Managed Payment)? <span class="req">*</span></label>
+            <div class="radio-inline">
+              <label><input type="radio" name="mptl" value="Yes" required>Yes</label>
+              <label><input type="radio" name="mptl" value="No">No</label>
+              <label><input type="radio" name="mptl" value="Not on UC">Not on UC</label>
+            </div>
+            <p class="note">A Managed Payment means your housing costs go directly to us, so you don't have to worry about the rent.</p></div>
+          <div class="field"><label>Do you have any rent arrears from a previous home? <span class="req">*</span></label>
+            <div class="radio-inline">
+              <label><input type="radio" name="arrears" value="No" required>No</label>
+              <label><input type="radio" name="arrears" value="Yes">Yes</label>
+            </div></div>
+          <div class="cond" id="arrearsCond"><div class="field"><label>Brief details (amount, and whether it's being repaid)</label><textarea name="arrearsDetail"></textarea></div></div>
+          <div class="field"><label>Any deductions or debts coming out of your benefits?</label>
+            <div class="radio-inline">
+              <label><input type="radio" name="deductions" value="No">No</label>
+              <label><input type="radio" name="deductions" value="Yes">Yes</label>
+            </div></div>
+          <div class="cond" id="dedCond"><div class="field"><label>Brief details</label><textarea name="deductionsDetail"></textarea></div></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your housing history</legend>
+          <div class="row2">
+            <div class="field"><label>Previous landlord — name</label><input type="text" name="prevLandlord"></div>
+            <div class="field"><label>Previous landlord — contact</label><input type="text" name="prevLandlordContact"></div>
+          </div>
+          <div class="field"><label>May we contact them for a reference?</label>
+            <div class="radio-inline">
+              <label><input type="radio" name="refOk" value="Yes">Yes</label>
+              <label><input type="radio" name="refOk" value="No">No</label>
+              <label><input type="radio" name="refOk" value="N/A">No previous landlord</label>
+            </div></div>
+          <div class="field"><label>Reason for leaving your last home</label><textarea name="reasonLeaving"></textarea></div>
+          <div class="field"><label>Have you ever been evicted or had a possession order? <span class="req">*</span></label>
+            <div class="radio-inline">
+              <label><input type="radio" name="evicted" value="No" required>No</label>
+              <label><input type="radio" name="evicted" value="Yes">Yes</label>
+            </div></div>
+          <div class="cond" id="evictedCond"><div class="field"><label>Brief details</label><textarea name="evictedDetail"></textarea></div></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Health &amp; wellbeing</legend>
+          <p class="hint">This helps us offer a suitable home and the right support. Share what you're comfortable with.</p>
+          <div class="field"><label>General health / any medical conditions</label><textarea name="health"></textarea></div>
+          <div class="field"><label>Can you manage stairs?</label>
+            <div class="radio-inline">
+              <label><input type="radio" name="stairs" value="Yes">Yes</label>
+              <label><input type="radio" name="stairs" value="With difficulty">With difficulty</label>
+              <label><input type="radio" name="stairs" value="No">No</label>
+            </div></div>
+          <div class="field"><label>Any physical disability or mobility needs? (e.g. ground‑floor only, wet room, wheelchair access)</label><textarea name="mobility"></textarea></div>
+          <div class="field"><label>Any communicable diseases (e.g. Hepatitis B/C, HIV, TB)?</label>
+            <div class="radio-inline">
+              <label><input type="radio" name="communicable" value="No">No</label>
+              <label><input type="radio" name="communicable" value="Yes">Yes</label>
+              <label><input type="radio" name="communicable" value="Prefer not to say">Prefer not to say</label>
+            </div></div>
+          <div class="cond" id="commCond"><div class="field"><label>Details (only what you're comfortable sharing)</label><textarea name="communicableDetail"></textarea></div></div>
+          <div class="field"><label>Mental health — current support needs</label><textarea name="mh"></textarea></div>
+          <div class="field"><label>Mental health history</label><textarea name="mhHistory"></textarea></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Support &amp; background</legend>
+          <p class="hint">We house people from many situations, including people leaving custody. Please be honest — it won't automatically rule you out; it helps us place you in the right home with the right support.</p>
+          <div class="row2">
+            <div class="field"><label>Do you have a support worker?</label>
+              <select name="hasSupport"><option value=""></option><option>Yes</option><option>No</option></select></div>
+            <div class="field"><label>Are you a care leaver?</label>
+              <select name="careLeaver"><option value=""></option><option>Yes</option><option>No</option></select></div>
+          </div>
+          <div class="cond" id="supportCond"><div class="field"><label>Support worker name, organisation &amp; contact</label><textarea name="supportDetail"></textarea></div></div>
+          <div class="field"><label>Are you fleeing domestic abuse?</label>
+            <div class="radio-inline">
+              <label><input type="radio" name="dv" value="No">No</label>
+              <label><input type="radio" name="dv" value="Yes">Yes</label>
+              <label><input type="radio" name="dv" value="Prefer not to say">Prefer not to say</label>
+            </div></div>
+          <div class="field"><label>Do you have any unspent criminal convictions? <span class="req">*</span></label>
+            <div class="radio-inline">
+              <label><input type="radio" name="hasConv" value="No" required>No</label>
+              <label><input type="radio" name="hasConv" value="Yes">Yes</label>
+            </div></div>
+          <div class="cond" id="convCond">
+            <div class="row2">
+              <div class="field"><label>How many separate offences?</label><input type="number" name="convCount" min="0" step="1"></div>
+              <div class="field"><label>On licence until (if applicable)</label><input type="date" name="licenceUntil"></div>
+            </div>
+            <div class="field"><label>Offence(s), dates and sentence</label><textarea name="convDetail"></textarea></div>
+            <div class="field"><label>Any licence conditions, restrictions or exclusion zones?</label><textarea name="convRestrictions"></textarea></div>
+          </div>
+          <div class="field"><label>Are you on probation or supervised? <span class="req">*</span></label>
+            <div class="radio-inline">
+              <label><input type="radio" name="probation" value="No" required>No</label>
+              <label><input type="radio" name="probation" value="Yes">Yes</label>
+            </div></div>
+          <div class="cond" id="probCond"><div class="field"><label>Probation officer name &amp; contact, and end date</label><textarea name="probDetail"></textarea></div></div>
+          <div class="field"><label>Drug or alcohol support <span class="req">*</span></label>
+            <select name="drug" required>
+              <option value=""></option>
+              <option value="None">No history</option>
+              <option value="Past-stable">In the past — now stable</option>
+              <option value="In treatment">Currently getting support / in treatment</option>
+              <option value="Active">Currently struggling</option>
+            </select></div>
+          <div class="cond" id="drugCond"><div class="field"><label>Brief details (substances, last use, who supports you)</label><textarea name="drugDetail"></textarea></div></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Declaration</legend>
+          <div class="consent">
+            <label><input type="checkbox" name="consent1" required> I agree that Gower Capital Group Ltd may hold this information and share it with referring organisations, support services and Rent Smart Wales to assess my application. <span class="req">*</span></label>
+            <label><input type="checkbox" name="consent2" required> The information I've given is true and complete to the best of my knowledge. <span class="req">*</span></label>
+          </div>
+        </fieldset>
+
+        <div class="formfoot">
+          <button type="submit" class="btn btn-gold">Submit application</button>
+          <span class="note">Your details are stored privately for the housing team.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+<script src="/apply.js"></script>
+</body>
+</html>

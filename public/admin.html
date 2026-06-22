@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Applications — Gower (private)</title>
+<link rel="icon" href="/assets/svg/gower-monogram-navy.svg">
+<link rel="stylesheet" href="/brand.css">
+</head>
+<body class="admin-body">
+  <div class="wrap">
+    <div class="admin-head">
+      <img class="logo" src="/assets/svg/gower-capital-wordmark-cream.svg" alt="Gower Capital Group">
+      <span class="muted" id="whoami" style="font-family:var(--font-display);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase"></span>
+    </div>
+
+    <div class="gate" id="gate" style="display:none">
+      <h2 style="color:var(--cream)">Staff sign in</h2>
+      <input type="password" id="passcode" placeholder="Passcode" autocomplete="current-password">
+      <button class="btn btn-gold" id="loginBtn" style="width:100%">Open dashboard</button>
+      <p class="muted" id="loginErr" style="font-size:.82rem;min-height:1em"></p>
+    </div>
+
+    <div id="panel" style="display:none">
+      <div class="kpis" id="kpis"></div>
+      <div class="tabs" id="tabs"></div>
+      <div class="toolbar">
+        <input type="search" id="search" placeholder="Search name…">
+        <select id="fVerdict">
+          <option value="">All recommendations</option>
+          <option value="SHORTLIST">Shortlist</option>
+          <option value="FLAG">Meets criteria – serious flag</option>
+          <option value="BORDERLINE">Borderline</option>
+          <option value="EXCLUDE">Exclude</option>
+        </select>
+        <select id="fSite">
+          <option value="">Both sites</option>
+          <option>Gower Living</option>
+          <option>Gower Capital Group</option>
+        </select>
+        <a class="btn btn-ghost" style="color:var(--cream)" href="/api/applications.csv">Export CSV</a>
+        <button class="btn btn-ghost" style="color:var(--cream)" id="logoutBtn">Sign out</button>
+      </div>
+      <table>
+        <thead><tr><th>Applied</th><th>Name</th><th class="hide-sm">Site</th><th>Age</th><th>PIP</th><th>Status</th><th>Recommendation</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="disclaimer">Recommendations are generated automatically from the applicant's answers using your rules (exclude many convictions or active drug dependency; prefer PIP; under‑35 must have 3+ months in temporary accommodation). Free‑text answers are not auto‑read — open each application and verify before deciding. Screening aid only, not a formal risk assessment.</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+  <div id="drawer"></div>
+<script src="/admin.js"></script>
+</body>
+</html>
