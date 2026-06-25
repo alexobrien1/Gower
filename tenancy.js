@@ -722,6 +722,7 @@ module.exports = function mountTenancy(app, deps){
 
   // ---- staff form ----
   app.get('/admin/new-tenancy', requireAuth, (req,res)=>{ res.type('html').send(formHTML()); });
+  app.get('/newtenancy', requireAuth, (req,res)=>{ res.type('html').send(formHTML()); });   // clean alias: gowerliving.wales/newtenancy
 
   // ---- admin: per-property compliance document folders ----
   app.get('/admin/tenancy-docs', requireAuth, (req,res)=>{
