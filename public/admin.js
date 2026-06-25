@@ -82,6 +82,7 @@
         <div class="statusbar"><label style="font-weight:600">Status:</label>
           <select id="statusSel">${opts}</select>
           <span class="muted" style="font-size:.8rem">Set to “Rejected” to move to the Rejected list.</span></div>
+        <a class="btn btn-gold" href="/newtenancy?app=${encodeURIComponent(r.id)}" style="display:inline-block;margin:2px 0 14px">+ Create tenancy from this application</a>
         <div class="verdictbox" style="background:${vb[0]};color:${vb[1]}">
           <h3>${RECLABEL[r.verdict]||r.verdict}</h3>
           ${(r.reasons&&r.reasons.length)?`<ul>${r.reasons.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
