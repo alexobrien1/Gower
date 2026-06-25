@@ -720,9 +720,14 @@ module.exports = function mountTenancy(app, deps){
   const findByToken = t => (data&&data.list) ? data.list().find(r=>r.kind==='tenancy'&&r.token===t) : null;
   const expired = rec => ((Date.now()-new Date(rec.created_at||Date.now()).getTime())/86400000) > 14;
 
-  // ---- staff form ----
-  app.get('/admin/new-tenancy', requireAuth, (req,res)=>{ res.type('html').send(formHTML()); });
-  app.get('/newtenancy', requireAuth, (req,res)=>{ res.type('html').send(formHTML()); });   // clean alias: gowerliving.wales/newtenancy
+  // ---- staff form ---- (serve the form when signed in; otherwise bounce to the /admin
+  // login page rather than returning a raw "Not signed in" JSON error)
+  function serveForm(req,res){
+    if(req.session && req.session.auth) return res.type('html').send(formHTML());
+    res.redirect('/admin');
+  }
+  app.get('/admin/new-tenancy', serveForm);
+  app.get('/newtenancy', serveForm);   // clean alias: gowerliving.wales/newtenancy
 
   // ---- admin: per-property compliance document folders ----
   app.get('/admin/tenancy-docs', requireAuth, (req,res)=>{
