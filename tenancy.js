@@ -206,6 +206,19 @@ small.note{display:block;color:var(--grey);font-size:.8rem;margin-top:4px}
   }
   form.addEventListener('submit',function(ev){ev.preventDefault();send('sign-now');});
   document.getElementById('sendlink').addEventListener('click',function(){send('send-link');});
+
+  // pre-fill the contract-holder fields from a received application (/newtenancy?app=<id>)
+  var _appId=new URLSearchParams(location.search).get('app');
+  if(_appId){
+    fetch('/api/applications').then(function(r){return r.json();}).then(function(j){
+      var a=((j&&j.rows)||[]).find(function(x){return String(x.id)===String(_appId);}); if(!a)return;
+      function setF(n,v){var el=form.querySelector('[name="'+n+'"]'); if(el&&v!=null&&v!=='')el.value=v;}
+      var nm=((a.firstName||'')+' '+(a.lastName||'')).trim();
+      setF('title',a.title); setF('fullName',nm); setF('dob',a.dob); setF('ni',a.ni);
+      setF('mobile',a.phone); setF('email',a.email); setF('prevAddress',a.address);
+      var m=document.getElementById('msg'); if(m){m.className='msg ok';m.textContent='Pre-filled from '+(nm||'the')+' application — check the details, choose the property/room and terms, then send.';}
+    }).catch(function(){});
+  }
 })();
 </script></body></html>`;
 }
