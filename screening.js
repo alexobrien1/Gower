@@ -57,4 +57,8 @@ function screen(r){
 const RECLABEL={SHORTLIST:'Shortlist',FLAG:'Meets criteria – serious flag',BORDERLINE:'Borderline',EXCLUDE:'Exclude'};
 const STATUSES=['New','Reviewing','Offer made','Rejected','Archived'];
 
-module.exports={ screen, ageFrom, monthsSince, RECLABEL, STATUSES };
+// Email suggestion mapped from the screening verdict (your rules)
+const SUGGESTION={ SHORTLIST:'ACCEPT', BORDERLINE:'MAYBE', FLAG:'MAYBE', EXCLUDE:'REJECT' };
+function suggestion(verdict){ return SUGGESTION[verdict]||'MAYBE'; }
+
+module.exports={ screen, ageFrom, monthsSince, RECLABEL, STATUSES, suggestion };

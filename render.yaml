@@ -1,11 +1,14 @@
-# One-click-ish deploy config for Render.com
+# Deploy config for Render.com — Docker runtime (reliable headless Chrome for the tenancy PDFs).
+# Easiest path: Render → New → Blueprint → pick this repo. Render reads everything below,
+# builds the Dockerfile, attaches the 1 GB disk, and just asks you to fill the secret values.
 services:
   - type: web
     name: gower-websites
-    runtime: node
-    plan: starter            # small paid plan; needed for a persistent disk
-    buildCommand: npm install
-    startCommand: npm start
+    runtime: docker          # use the Dockerfile (installs Chrome's libraries)
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter            # needed for the persistent disk
+    region: frankfurt        # closest Render region to Wales; change if you prefer
     healthCheckPath: /living
     autoDeploy: true
     envVars:
@@ -14,10 +17,18 @@ services:
       - key: DATA_DIR
         value: /data
       - key: SESSION_SECRET
-        generateValue: true   # Render creates a long random secret
+        generateValue: true        # Render creates a long random secret
       - key: ADMIN_PASSWORD
-        sync: false           # you set this in the dashboard (keep it private)
+        sync: false                # set in the dashboard — your staff passcode
+      - key: RESEND_API_KEY
+        sync: false                # set in the dashboard — sends the emails
+      - key: MAIL_FROM
+        sync: false                # e.g. "Gower Living <noreply@gowerliving.com>" (Resend-verified)
+      - key: MAIL_TO
+        value: mail@gowercapitalgroup.com
+      - key: PUBLIC_URL
+        sync: false                # your live URL — builds the tenant's signing link (required)
     disk:
-      name: gower-data        # keeps applications.json across deploys/restarts
+      name: gower-data             # keeps applications.json + records across deploys
       mountPath: /data
       sizeGB: 1

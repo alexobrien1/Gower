@@ -3,7 +3,7 @@ const session=require('express-session');
 const path=require('path');
 const fs=require('fs');
 const data=require('./data');
-const { screen, RECLABEL, STATUSES } = require('./screening');
+const { screen, RECLABEL, STATUSES, suggestion } = require('./screening');
 
 const app=express();
 app.set('trust proxy', 1); // secure cookies work behind a host's HTTPS proxy (Render/Railway)
@@ -12,9 +12,48 @@ const ADMIN_PASSWORD=process.env.ADMIN_PASSWORD||'gower';
 const SESSION_SECRET=process.env.SESSION_SECRET||'change-me-in-production';
 if(ADMIN_PASSWORD==='gower') console.warn('[warn] Using default admin password "gower". Set ADMIN_PASSWORD before going live.');
 
+// Email alerts (Resend). Set RESEND_API_KEY in the environment to enable.
+const RESEND_API_KEY=process.env.RESEND_API_KEY||'';
+const MAIL_TO=process.env.MAIL_TO||'mail@gowercapitalgroup.com';
+const MAIL_FROM=process.env.MAIL_FROM||'Gower Applications <onboarding@resend.dev>';
+const PUBLIC_URL=process.env.PUBLIC_URL||'https://gower-websites.onrender.com';
+
+async function notifyNewApplication(rec){
+  if(!RESEND_API_KEY){ console.log('[email] RESEND_API_KEY not set — skipping alert'); return; }
+  const sug=suggestion(rec.verdict);
+  const name=((rec.firstName||'')+' '+(rec.lastName||'')).trim()||'Unknown applicant';
+  const esc=v=>String(v==null?'':v).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  const reasons=(rec.reasons||[]).map(x=>'• '+esc(x)).join('<br>');
+  const flags=(rec.flags||[]).map(x=>'⚠ '+esc(x)).join('<br>');
+  const colour={ACCEPT:'#2E7D52',MAYBE:'#B97A0B',REJECT:'#C0392B'}[sug]||'#1E3A53';
+  const rows=[
+    ['Suggestion', sug+' ('+(RECLABEL[rec.verdict]||rec.verdict)+')'],
+    ['Age', rec.age==null?'?':rec.age],
+    ['Benefits', (rec.benefit||[]).join(', ')+(rec.pip?' — on PIP':'')],
+    ['Situation', rec.situation||''],
+    ['Phone', rec.phone||''],['Email', rec.email||'']
+  ].map(([k,v])=>`<tr><td style="padding:3px 12px 3px 0;color:#5b6770">${k}</td><td style="padding:3px 0"><b>${esc(v)}</b></td></tr>`).join('');
+  const html=`<div style="font-family:Arial,Helvetica,sans-serif;color:#0A1D2E">
+    <p style="font-size:13px;color:#5b6770;margin:0 0 4px">New housing application</p>
+    <h2 style="margin:0 0 2px">${esc(name)}</h2>
+    <p style="margin:0 0 14px"><span style="background:${colour};color:#fff;border-radius:999px;padding:3px 12px;font-weight:700">${sug}</span> &nbsp;<span style="color:#5b6770">${esc(rec.site||'')} · ${new Date(rec.created_at).toLocaleString('en-GB')}</span></p>
+    <table style="font-size:14px;border-collapse:collapse">${rows}</table>
+    ${reasons?`<p style="font-size:14px"><b>Why:</b><br>${reasons}</p>`:''}
+    ${flags?`<p style="font-size:14px;color:#b00"><b>Flags:</b><br>${flags}</p>`:''}
+    <p style="font-size:14px"><a href="${PUBLIC_URL}/admin">Open the admin dashboard →</a></p>
+  </div>`;
+  const res=await fetch('https://api.resend.com/emails',{
+    method:'POST',
+    headers:{'Authorization':'Bearer '+RESEND_API_KEY,'Content-Type':'application/json'},
+    body:JSON.stringify({from:MAIL_FROM,to:[MAIL_TO],subject:`New application: ${name} — ${sug}`,html})
+  });
+  if(!res.ok){ throw new Error('Resend '+res.status+' '+(await res.text()).slice(0,200)); }
+  console.log('[email] alert sent for', name, '->', sug);
+}
+
 const PUB=path.join(__dirname,'public');
 
-app.use(express.json({limit:'200kb'}));
+app.use(express.json({limit:'2mb'})); // 2mb so the on-screen signature image fits
 app.use(express.urlencoded({extended:true}));
 app.use(session({
   name:'gower.sid',
@@ -74,6 +113,7 @@ app.post('/api/apply',(req,res)=>{
   delete rec.password;
   data.add(rec);
   res.json({ok:true});
+  notifyNewApplication(rec).catch(e=>console.error('[email] failed:', e.message));
 });
 
 // ---- auth ----
@@ -107,8 +147,14 @@ app.get('/api/applications.csv',requireAuth,(req,res)=>{
   res.type('text/csv').attachment('gower-applications.csv').send(cols.join(',')+'\n'+rows.join('\n'));
 });
 
+// privacy policy (shared)
+app.get('/privacy',(req,res)=>res.sendFile(path.join(PUB,'privacy.html')));
+
 // admin page
 app.get('/admin',(req,res)=>res.sendFile(path.join(PUB,'admin.html')));
+
+// ---- Create New Tenancy (staff form + pack generator + email) ----
+require('./tenancy')(app, { requireAuth, data, PUB });
 
 app.listen(PORT,()=>{
   console.log('Gower sites running on http://localhost:'+PORT);
