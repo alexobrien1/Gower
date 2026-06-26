@@ -261,7 +261,7 @@ function packHTML(d){
     '<div class="cov"><div class="cl">THE DWELLING</div><div class="cv">'+esc(prop)+'</div>'+
     '<div class="cl">CONTRACT-HOLDER</div><div class="cv">'+tenant+'</div>'+
     '<div class="cl">LANDLORD</div><div class="cv">Gower Capital Group Ltd</div></div>'+
-    '<p class="ins"><b>What&rsquo;s inside:</b> occupation contract · pre-contract checklist · Notice of Landlord&rsquo;s Address (RHW2) · inventory &amp; schedule of condition · deposit prescribed information · privacy notice · declaration of understanding · UC landlord-representative authorisation · UC managed-payment (APA) request · Jobcentre Plus proof-of-tenancy letter · key receipt · identity &amp; right-to-occupy record. Appended for this property: EPC, Gas Safety Certificate, EICR, and the Guide for Tenants in Wales.</p>'+
+    '<p class="ins"><b>What&rsquo;s inside:</b> occupation contract · pre-contract checklist · Notice of Landlord&rsquo;s Address (RHW2) · inventory &amp; schedule of condition · deposit prescribed information · privacy notice · declaration of understanding · UC landlord-representative authorisation · UC managed-payment (APA) request · Jobcentre Plus proof-of-tenancy letter · key receipt · identity &amp; right-to-occupy record · tenant welcome pack. Appended for this property: EPC, Gas Safety Certificate, EICR, and the Guide for Tenants in Wales.</p>'+
     '</section>');
 
   // ----- Occupation contract (written statement) -----
@@ -467,6 +467,42 @@ function packHTML(d){
     '<table class="grid"><tr><th>Document</th><th>Reference</th><th>Seen by</th><th>Date</th></tr><tr><td>Photo ID (passport / driving licence)</td><td></td><td></td><td></td></tr><tr><td>Proof of address</td><td></td><td></td><td></td></tr><tr><td>Benefit / UC award notice</td><td></td><td></td><td></td></tr></table>'+
     '<div class="sigs">'+sline('Checked by, for Gower Living', lsig)+'</div></section>');
 
+  // ---- Tenant welcome pack (Gower Living) — appended to every pack ----
+  docs.push('<section class="doc">'+head('Welcome to your new home')+'<h2>Tenant Welcome Pack</h2>'+
+    '<p>Welcome to your new home with <b>Gower Living</b>, part of Gower Capital Property Group. We want you to feel settled and supported here. This short guide answers the questions tenants ask most, and tells you who to contact if you need a hand. Please keep it somewhere safe with your other tenancy papers.</p>'+
+    '<div class="sec">Your tenant app &mdash; Bidrento</div>'+
+    '<p>Please download the free <b>Bidrento</b> tenant app (search <b>&ldquo;Arthur Online tenant&rdquo;</b> in your app store). It is the easiest way to:</p>'+
+    '<ul><li>report a repair or maintenance issue &mdash; you can add photos;</li><li>see your rent account and when your next payment is due;</li><li>view all your tenancy documents in one place;</li><li>message us, with everything kept together.</li></ul>'+
+    '<div class="sec">Setting up your rent</div>'+
+    '<p><b>If you claim Universal Credit:</b> on the day you sign, update your online UC account &mdash; go to <i>Report a change &rarr; Where you live and what it costs</i>. Enter your address, move-in date and housing costs (all in your occupation contract), and our details below. Then add a note to your journal asking for your rent to be paid <b>direct to your landlord (an APA)</b>, and send us a screenshot of your updated housing screen for your file.</p>'+
+    kv([['Landlord',esc(LL.name)],['Address',esc(LL.addr)],['Email',esc(LL.email)],['Housing type','Private housing']])+
+    '<p><b>If Housing Benefit pays your rent:</b> call Swansea Council on <b>01792 636000</b>, ask for a Housing Benefit form, complete your part and return it to us on the day you sign.</p>'+
+    '<p><b>If you are working:</b> set up a standing order or direct debit for your rent (and service charge if your contract has one), paid in full each month to:</p>'+
+    kv([['Account name','Gower Capital Group'],['Sort code','04-06-05'],['Account number','18499656'],['Reference','your name / room']])+
+    '</section>');
+  docs.push('<section class="doc">'+head('Looking after your home &amp; house rules')+'<h2>Looking After Your Home</h2>'+
+    '<p>A few small, regular jobs keep your home in good condition and head off bigger problems:</p>'+
+    '<ul><li>Wipe down condensation and air your rooms; clean any mould with a solution of 1 part bleach to 4 parts water (or a mould cleaner).</li><li>Descale taps, showerheads, sinks and the kettle from time to time.</li><li>Keep sink and shower wastes clear with a drain cleaner.</li><li>Replace light bulbs, and change the batteries in smoke and carbon-monoxide alarms when they bleep.</li><li>Defrost the freezer and clean appliances and surfaces regularly, to keep everything working and hygienic.</li></ul>'+
+    '<div class="sec">House rules for shared homes</div>'+
+    '<p>So everyone in the house feels comfortable and safe:</p>'+
+    '<ul><li><b>Communal areas</b> &mdash; keep the shared kitchen, bathroom and hallways clean after use, and please don&rsquo;t leave your belongings in them.</li><li><b>Who lives here</b> &mdash; your room is let to you alone; no one else may move in. Reasonable visitors are welcome, but no extra occupiers, and please keep overnight guests occasional and considerate.</li><li><b>Noise</b> &mdash; keep noise down, especially between 11pm and 8am, so housemates and neighbours can rest.</li><li><b>Smoking &amp; vaping</b> &mdash; not indoors or in communal areas.</li><li><b>Respect</b> &mdash; antisocial behaviour, threats or harassment towards housemates, neighbours or staff is not acceptable and can put your tenancy at risk.</li><li><b>Pets</b> &mdash; only with our written agreement.</li><li><b>Waste &amp; recycling</b> &mdash; dispose of rubbish and recycling correctly (see Appendix A). Put bags out no earlier than 7pm the night before collection, and don&rsquo;t let waste build up.</li></ul>'+
+    '<div class="sec">Energy &mdash; fair usage</div>'+
+    '<p>Where gas and electricity are included in your rent, a <b>fair usage policy</b> applies. The monthly allowances are generous and you are unlikely to exceed them with sensible use. If usage is excessive, we may apply a supplemental charge for the amount over the allowance. Your allowance is set out in your agreement &mdash; just ask if you are unsure.</p>'+
+    '</section>');
+  docs.push('<section class="doc">'+head('Safety, emergencies &amp; support')+'<h2>Staying Safe &amp; Getting Help</h2>'+
+    '<div class="sec">In an emergency</div>'+
+    '<p>For anything that puts life or property at immediate risk, use the right emergency line first, then tell us:</p>'+
+    kv([['Fire','Get out, stay out, call <b>999</b>'],['Gas leak / smell of gas','Open windows, don&rsquo;t touch switches, leave &mdash; National Gas Emergency <b>0800 111 999</b>'],['Electrical danger / power cut','Switch off at the consumer unit if safe &mdash; power-cut line <b>105</b>'],['Major water leak','Turn off at the stop tap'],['Medical emergency','<b>999</b>']])+
+    '<p>Test your smoke and carbon-monoxide alarms weekly, and never remove or cover them.</p>'+
+    '<div class="sec">Repairs &amp; out-of-hours</div>'+
+    '<p>Report any repair through the <b>Bidrento</b> app (with photos if you can). For urgent issues out of hours, email us at <b>'+esc(LL.email)+'</b> and we will respond as quickly as we can. If you lose your keys out of hours, you are responsible for calling a locksmith to get back in; any damage caused will be reported to the police.</p>'+
+    '<div class="sec">Settling in &mdash; your first week</div>'+
+    '<ul><li>Take photos of the meter readings on your move-in day.</li><li>Register with a local GP and dentist.</li><li>Set up your rent (UC / Housing Benefit / direct debit) as above.</li><li>Download the Bidrento app.</li><li>Find out your bin and recycling days.</li><li>Consider contents insurance &mdash; the building is insured by us, but your belongings are not.</li></ul>'+
+    '<div class="sec">If you need a hand &mdash; free, confidential support</div>'+
+    kv([['Mental health &amp; wellbeing','Samaritans <b>116 123</b> (free, 24/7) &middot; Mind &middot; your GP for local support'],['Money, benefits &amp; debt','Citizens Advice &middot; StepChange <b>0800 138 1111</b> &middot; Universal Credit <b>0800 328 5644</b>'],['Domestic abuse &amp; safety','Live Fear Free (Wales) <b>0808 80 10 800</b> (24/7)'],['Drugs &amp; alcohol','DAN 24/7 (Wales) <b>0808 808 2234</b>'],['Housing advice','Shelter Cymru <b>08000 495 495</b>'],['Food support','Ask us &mdash; we&rsquo;ll point you to your nearest food bank']])+
+    '<p class="muted">Gower Living is part of Gower Capital Property Group. We&rsquo;re here to help your home work for you &mdash; get in touch any time at '+esc(LL.email)+'.</p>'+
+    '</section>');
+
   var css = `
 @page{size:A4;margin:18mm 16mm 16mm}
 *{box-sizing:border-box}
@@ -489,6 +525,8 @@ table.grid td{border:.5px solid #D9D3C7;padding:7px;height:18px}
 .cbi{margin:3px 0}.cb{font-size:11px}
 .apgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:#F4F1EA;border:.6px solid #D9D3C7;padding:8px 10px;font-size:8.6px}
 .apgrid b{font-family:'Outfit'}
+.sec{background:#0A1D2E;color:#F6F2E8;font-family:'Outfit';font-weight:600;font-size:11px;padding:5px 8px;margin:13px 0 6px;border-radius:3px}
+.doc ul{margin:4px 0 4px;padding-left:18px}.doc li{margin:2px 0}
 .contract .sec{background:#0A1D2E;color:#F6F2E8;font-family:'Outfit';font-weight:600;font-size:11px;padding:5px 8px;margin:13px 0 6px;border-radius:3px}
 .contract .cl{font-family:'Outfit';font-weight:600;font-size:9.6px;color:#0A1D2E;margin:8px 0 2px}
 .contract p{margin:0 0 5px}
