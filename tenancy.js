@@ -59,7 +59,11 @@ const LL = {
   email: 'mail@gowercapitalgroup.com',
   phone: '07815 866283',
   bank: 'Gower Capital Group, sort code 04-06-05, account 18499656',
-  contact: "Alex O'Brien"
+  contact: "Alex O'Brien",
+  // Rent Smart Wales — agent licence + both landlord registrations (shown on every contract)
+  rswLicence: 'LR 75063-45052',
+  rswReg1: 'Gower Capital Group Ltd — RN97039-97310',
+  rswReg2: 'Gower Capital 2 Ltd — RN 32153-86749'
 };
 const APA = {
   t1: ['Drug, alcohol or other addiction problems','Learning difficulties incl. literacy/numeracy','Severe or multiple debt problems','In temporary accommodation','Homeless','Domestic violence and abuse','Mental health condition','In rent arrears / threat of eviction','16/17 year old or care leaver','Family with multiple and complex needs'],
@@ -127,19 +131,15 @@ small.note{display:block;color:var(--grey);font-size:.8rem;margin-top:4px}
       <div class="field"><label>National Insurance no. *</label><input name="ni" required placeholder="AB123456C"></div>
       <div class="field"><label>Mobile</label><input name="mobile"></div>
       <div class="field"><label>Email *</label><input name="email" type="email" required></div>
-      <div class="field full"><label>Previous address</label><input name="prevAddress"></div>
     </div>
   </fieldset>
   <fieldset><legend>Tenancy terms</legend>
     <div class="row">
       <div class="field"><label>Rent (£ / calendar month) *</label><input name="rent" type="number" step="0.01" required></div>
       <div class="field"><label>Deposit (£)</label><input name="deposit" type="number" step="0.01"></div>
-      <div class="field"><label>Deposit scheme</label><input name="depositScheme" value="The Tenancy Deposit Scheme (TDS, insured)"></div>
-      <div class="field"><label>TDS membership / cert no.</label><input name="depositRef"></div>
       <div class="field"><label>Occupation (start) date *</label><input name="occupationDate" type="date" required></div>
       <div class="field"><label>Fixed term (months)</label><input name="termMonths" type="number" value="6"></div>
       <div class="field"><label>Rent day (day of month)</label><input name="paymentDay" type="number" min="1" max="28"></div>
-      <div class="field"><label>Waste collection day</label><input name="collectionDay"></div>
     </div>
   </fieldset>
   <fieldset><legend>Universal Credit — managed payment factors</legend>
@@ -215,7 +215,7 @@ small.note{display:block;color:var(--grey);font-size:.8rem;margin-top:4px}
       function setF(n,v){var el=form.querySelector('[name="'+n+'"]'); if(el&&v!=null&&v!=='')el.value=v;}
       var nm=((a.firstName||'')+' '+(a.lastName||'')).trim();
       setF('title',a.title); setF('fullName',nm); setF('dob',a.dob); setF('ni',a.ni);
-      setF('mobile',a.phone); setF('email',a.email); setF('prevAddress',a.address);
+      setF('mobile',a.phone); setF('email',a.email);
       var m=document.getElementById('msg'); if(m){m.className='msg ok';m.textContent='Pre-filled from '+(nm||'the')+' application — check the details, choose the property/room and terms, then send.';}
     }).catch(function(){});
   }
@@ -347,10 +347,9 @@ function packHTML(d){
       '<p class="muted">Written statement of a fixed term standard occupation contract under the Renting Homes (Wales) Act 2016. The contract-holder’s signature on the signature page below applies to this contract.</p>'+
       '<div class="sec">A &nbsp; The parties and the dwelling</div>'+
       kv([['Landlord','Gower Capital Group Ltd — '+LL.addr+' — '+LL.email+' / '+LL.phone],
-          ['Rent Smart Wales','Licence no. '+BLANK+' &nbsp;·&nbsp; registration no. '+BLANK],
+          ['Rent Smart Wales','Agent licence '+LL.rswLicence+' &nbsp;·&nbsp; Registrations: '+LL.rswReg1+' &nbsp;·&nbsp; '+LL.rswReg2],
           ['Contract-holder',tenant+' — DOB '+dfmt(d.dob)+' — NI '+esc(d.ni||'____')],
           ['Contact',esc(d.email||'____')+(d.mobile?' &nbsp;·&nbsp; '+esc(d.mobile):'')],
-          ['Previous address',esc(d.prevAddress||'____')],
           ['The dwelling',esc(prop)+(P.type==='hmo'?' (one room in a House in Multiple Occupation)':'')],
           ['Shared use','Communal kitchen, bathroom/WC, hallways and other shared parts, per the Inventory.'],
           ['Permitted occupiers','None unless agreed in writing — single occupation by the contract-holder.']])+
@@ -421,7 +420,7 @@ function packHTML(d){
     kv([['Property',esc(prop)],['Contract-holder',tenant]])+
     '<p class="muted">By signing, you confirm each of the following has been explained to you and you understand it.</p>'+
     '<h3>Fire precautions</h3><p>The fire alarm, means of escape, keeping the escape route clear, fire doors and fire-fighting equipment have been explained to me.</p>'+
-    '<h3>Waste management</h3><p>Black bags for general waste; recycling separated as the Council requires (pink — hard plastic; green 1 — paper/card; green 2 — glass/cans; food caddy); bags out no earlier than 7pm the night before collection; no waste to accumulate; sharps wrapped; no oil, asbestos, clinical, building or garden waste. Council: 01792 635600. Collection day: '+esc(d.collectionDay||'____')+'.</p>'+
+    '<h3>Waste management</h3><p>Black bags for general waste; recycling separated as the Council requires (pink — hard plastic; green 1 — paper/card; green 2 — glass/cans; food caddy); bags out no earlier than 7pm the night before collection; no waste to accumulate; sharps wrapped; no oil, asbestos, clinical, building or garden waste. Council: 01792 635600.</p>'+
     '<h3>Anti-social behaviour</h3><p>What may constitute ASB, its impact, the standard expected, and that it can put my occupation contract at risk, have been explained to me.</p>'+
     '<h3>Management of HMOs (Wales) Regulations 2006/2007</h3><p>I will not hinder the manager&rsquo;s duties; allow reasonable access; provide information reasonably required; avoid damaging anything the manager must maintain; store/dispose of litter as arranged; and follow reasonable fire-safety instructions.</p>'+
     '<div class="sigs">'+sline(tenant+' (contract-holder)', tsig)+sline('For Gower Living', lsig)+'</div></section>');
@@ -464,7 +463,7 @@ function packHTML(d){
   // 11 ID & right to occupy
   docs.push('<section class="doc">'+head('Identity &amp; right-to-occupy record')+'<h2>Identity &amp; Right-to-Occupy Verification</h2>'+
     '<p class="muted">For the landlord&rsquo;s own assurance and anti-money-laundering checks. The Right to Rent immigration check does not apply in Wales — this is identity verification only.</p>'+
-    kv([['Contract-holder',tenant],['Date of birth',dfmt(d.dob)],['National Insurance number',esc(d.ni)],['Email',esc(d.email)],['Mobile',esc(d.mobile||'____')],['Previous address',esc(d.prevAddress||'____')]])+
+    kv([['Contract-holder',tenant],['Date of birth',dfmt(d.dob)],['National Insurance number',esc(d.ni)],['Email',esc(d.email)],['Mobile',esc(d.mobile||'____')]])+
     '<table class="grid"><tr><th>Document</th><th>Reference</th><th>Seen by</th><th>Date</th></tr><tr><td>Photo ID (passport / driving licence)</td><td></td><td></td><td></td></tr><tr><td>Proof of address</td><td></td><td></td><td></td></tr><tr><td>Benefit / UC award notice</td><td></td><td></td><td></td></tr></table>'+
     '<div class="sigs">'+sline('Checked by, for Gower Living', lsig)+'</div></section>');
 
@@ -715,12 +714,15 @@ module.exports = function mountTenancy(app, deps){
 
   cfg.LOGO_CREAM = logoDataUrlCream(PUB) || cfg.LOGO_URL;
   const propLabel = p => (p.room?p.room+', ':'')+p.address+', '+p.postcode;
+  // Fixed deposit-scheme details — set once here and printed on every pack (no re-typing).
+  const DEPOSIT_SCHEME = 'The Tenancy Deposit Scheme (TDS, insured)';
+  const TDS_NUMBER = '16017 (TDS Landlord ID)';
   function recFromBody(b, property){
     return { kind:'tenancy', propertyId:property.id, property:propLabel(property),
       title:b.title, fullName:b.fullName, dob:b.dob, ni:b.ni, mobile:b.mobile, email:b.email,
-      prevAddress:b.prevAddress, rent:b.rent, deposit:b.deposit, depositScheme:b.depositScheme,
-      depositRef:b.depositRef, occupationDate:b.occupationDate, termMonths:b.termMonths,
-      paymentDay:b.paymentDay, collectionDay:b.collectionDay, apa:b.apa||[] };
+      rent:b.rent, deposit:b.deposit, depositScheme:DEPOSIT_SCHEME,
+      depositRef:TDS_NUMBER, occupationDate:b.occupationDate, termMonths:b.termMonths,
+      paymentDay:b.paymentDay, apa:b.apa||[] };
   }
   async function renderRecord(rec, tenantSignature){
     const property = PROPERTIES.find(p=>p.id===rec.propertyId);
