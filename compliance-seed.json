@@ -1,0 +1,991 @@
+{
+ "items": [
+  {
+   "code": "A1",
+   "name": "Building insurance"
+  },
+  {
+   "code": "A2",
+   "name": "Gas safety"
+  },
+  {
+   "code": "A3A4",
+   "name": "Fire alarm / smoke"
+  },
+  {
+   "code": "A5",
+   "name": "Electrical (EICR)"
+  },
+  {
+   "code": "A6",
+   "name": "Fire risk assessment"
+  },
+  {
+   "code": "A7",
+   "name": "HMO licence"
+  },
+  {
+   "code": "A8",
+   "name": "Legionella"
+  },
+  {
+   "code": "A9",
+   "name": "Building cert"
+  },
+  {
+   "code": "A10A11",
+   "name": "EPC"
+  },
+  {
+   "code": "A12",
+   "name": "PAT"
+  },
+  {
+   "code": "A13",
+   "name": "Rent Smart Wales"
+  },
+  {
+   "code": "A14",
+   "name": "Emergency lighting"
+  },
+  {
+   "code": "A15",
+   "name": "Fire extinguisher"
+  },
+  {
+   "code": "A16",
+   "name": "Fire sprinkler"
+  },
+  {
+   "code": "A17",
+   "name": "Asbestos"
+  }
+ ],
+ "props": [
+  {
+   "num": "22",
+   "id": "22-hill-street",
+   "label": "22 Hill Street, Swansea",
+   "postcode": "SA1 6XU",
+   "type": "W"
+  },
+  {
+   "num": "138",
+   "id": "138-walter-road",
+   "label": "138 Walter Road, Swansea",
+   "postcode": "SA1 5RQ",
+   "type": "HMO"
+  },
+  {
+   "num": "108",
+   "id": "108-penygraig-road",
+   "label": "108 Penygraig Road, Mayhill, Swansea",
+   "postcode": "SA1 6JZ",
+   "type": "HMO"
+  },
+  {
+   "num": "130",
+   "id": "130-townhill-road",
+   "label": "130 Townhill Road, Cockett, Swansea",
+   "postcode": "SA2 0UU",
+   "type": "HMO"
+  },
+  {
+   "num": "83",
+   "id": "83-north-hill-road",
+   "label": "83 North Hill Road, Swansea",
+   "postcode": "SA1 6YT",
+   "type": "HMO"
+  },
+  {
+   "num": "310",
+   "id": "310-neath-road",
+   "label": "310 Neath Road, Plasmarl, Swansea",
+   "postcode": "SA6 8JU",
+   "type": "HMO"
+  },
+  {
+   "num": "40",
+   "id": "40-courtney-street",
+   "label": "40 Courtney Street, Manselton, Swansea",
+   "postcode": "SA5 9NR",
+   "type": "HMO"
+  },
+  {
+   "num": "567",
+   "id": "567-pentregethin-road",
+   "label": "567 Pentregethin Road, Swansea",
+   "postcode": "SA5 5ET",
+   "type": "HMO"
+  },
+  {
+   "num": "85",
+   "id": "85-north-hill-road",
+   "label": "85 North Hill Road, Swansea",
+   "postcode": "SA1 6YT",
+   "type": "Tenant"
+  },
+  {
+   "num": "81",
+   "id": "81-north-hill-road",
+   "label": "81 North Hill Road, Swansea",
+   "postcode": "SA1 6YT",
+   "type": "Tenant"
+  },
+  {
+   "num": "367",
+   "id": "367-neath-road",
+   "label": "367 Neath Road, Plasmarl, Swansea",
+   "postcode": "SA6 8JN",
+   "type": "Tenant"
+  },
+  {
+   "num": "81G",
+   "id": "81-glynhir-road",
+   "label": "81 Glynhir Road, Pontarddulais, Swansea",
+   "postcode": "SA4 8PT",
+   "type": "Tenant"
+  },
+  {
+   "num": "81G A",
+   "id": "81a-glynhir-road",
+   "label": "81A Glynhir Road, Pontarddulais, Swansea",
+   "postcode": "SA4 8PT",
+   "type": "Tenant"
+  },
+  {
+   "num": "81G B",
+   "id": "81b-glynhir-road",
+   "label": "81B Glynhir Road, Pontarddulais, Swansea",
+   "postcode": "SA4 8PT",
+   "type": "Tenant"
+  },
+  {
+   "num": "16",
+   "id": "16-gomer-gardens",
+   "label": "16 Gomer Gardens, Townhill, Swansea",
+   "postcode": "SA1 6QF",
+   "type": "Service"
+  }
+ ],
+ "data": {
+  "22-hill-street": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-02-22"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2028-05-15"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2026-03-08"
+   },
+   "A7": {
+    "state": "date",
+    "date": "2028-05-03"
+   },
+   "A8": {
+    "state": "review",
+    "note": "WALICH"
+   },
+   "A9": {
+    "state": "date",
+    "date": "2018-12-19"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2030-03-21"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "review",
+    "note": "Wal"
+   },
+   "A14": {
+    "state": "missing"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "missing"
+   },
+   "A17": {
+    "state": "review",
+    "note": "Wal"
+   }
+  },
+  "138-walter-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-01-05"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2027-02-09"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-20"
+   },
+   "A7": {
+    "state": "date",
+    "date": "2026-11-08"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-20"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2026-06-18",
+    "note": "18/6/26 C,11/10/30 D"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "missing"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-20"
+   }
+  },
+  "108-penygraig-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-09-18"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2028-11-28",
+    "note": "28/11/28 part"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-18"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-19"
+   },
+   "A9": {
+    "state": "date",
+    "date": "2020-10-14"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2030-10-04"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "missing"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-19"
+   }
+  },
+  "130-townhill-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-05-26"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2029-01-12"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-20"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-20"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2035-08-24"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-20"
+   }
+  },
+  "83-north-hill-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-03-09"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2027-09-08"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A7": {
+    "state": "date",
+    "date": "2027-09-19"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2032-11-13"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-27"
+   }
+  },
+  "310-neath-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2025-10-23"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2030-08-20"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-28"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-28"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "review",
+    "note": "29/02/29"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-28"
+   }
+  },
+  "40-courtney-street": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-09-18"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2029-01-26"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-20"
+   },
+   "A7": {
+    "state": "review",
+    "note": "/11/"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-20"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2028-11-11"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-20"
+   }
+  },
+  "567-pentregethin-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-09-18"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2026-09-01"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "1203-04-02",
+    "note": "02/04/12031"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-27"
+   }
+  },
+  "85-north-hill-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-09-16"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2030-01-23"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2029-03-05"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-27"
+   }
+  },
+  "81-north-hill-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-09-16"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2030-01-23"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-01-02"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-27"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "review",
+    "note": "1932-11-13"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-27"
+   }
+  },
+  "367-neath-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-09-18"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2030-05-13"
+   },
+   "A6": {
+    "state": "date",
+    "date": "2025-11-19"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-19"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2031-03-10"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-19"
+   }
+  },
+  "81-glynhir-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-06-04"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2028-05-24"
+   },
+   "A6": {
+    "state": "na"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-22"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2027-10-31"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "missing"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-22"
+   }
+  },
+  "81a-glynhir-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-05-22"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2028-05-24"
+   },
+   "A6": {
+    "state": "na"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-22"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2027-10-31"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "missing"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-22"
+   }
+  },
+  "81b-glynhir-road": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-05-22"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2028-04-24"
+   },
+   "A6": {
+    "state": "na"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2025-11-26"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2028-07-21"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "missing"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2025-11-26"
+   }
+  },
+  "16-gomer-gardens": {
+   "A1": {
+    "state": "missing"
+   },
+   "A2": {
+    "state": "date",
+    "date": "2026-05-26"
+   },
+   "A3A4": {
+    "state": "date",
+    "date": "2026-05-13"
+   },
+   "A5": {
+    "state": "date",
+    "date": "2028-01-22"
+   },
+   "A6": {
+    "state": "na"
+   },
+   "A7": {
+    "state": "na"
+   },
+   "A8": {
+    "state": "date",
+    "date": "2024-11-28"
+   },
+   "A9": {
+    "state": "missing"
+   },
+   "A10A11": {
+    "state": "date",
+    "date": "2031-01-15"
+   },
+   "A12": {
+    "state": "missing"
+   },
+   "A13": {
+    "state": "missing"
+   },
+   "A14": {
+    "state": "na"
+   },
+   "A15": {
+    "state": "missing"
+   },
+   "A16": {
+    "state": "na"
+   },
+   "A17": {
+    "state": "date",
+    "date": "2024-11-28"
+   }
+  }
+ },
+ "source": "AUDIT REPORT SEPT 2025 CTO.xlsx (Sheet1)",
+ "imported": "2026-06-30"
+}

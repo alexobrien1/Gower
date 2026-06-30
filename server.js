@@ -40,7 +40,7 @@ async function notifyNewApplication(rec){
     <table style="font-size:14px;border-collapse:collapse">${rows}</table>
     ${reasons?`<p style="font-size:14px"><b>Why:</b><br>${reasons}</p>`:''}
     ${flags?`<p style="font-size:14px;color:#b00"><b>Flags:</b><br>${flags}</p>`:''}
-    <p style="font-size:14px"><a href="${PUBLIC_URL}/admin">Open the admin dashboard →</a></p>
+    <p style="font-size:14px"><a href="${PUBLIC_URL}/admin/applications">Open the admin dashboard →</a></p>
   </div>`;
   const res=await fetch('https://api.resend.com/emails',{
     method:'POST',
@@ -53,7 +53,7 @@ async function notifyNewApplication(rec){
 
 const PUB=path.join(__dirname,'public');
 
-app.use(express.json({limit:'2mb'})); // 2mb so the on-screen signature image fits
+app.use(express.json({limit:'30mb'})); // signatures + base64 file uploads (certs, photos)
 app.use(express.urlencoded({extended:true}));
 app.use(session({
   name:'gower.sid',
@@ -150,11 +150,15 @@ app.get('/api/applications.csv',requireAuth,(req,res)=>{
 // privacy policy (shared)
 app.get('/privacy',(req,res)=>res.sendFile(path.join(PUB,'privacy.html')));
 
-// admin page
-app.get('/admin',(req,res)=>res.sendFile(path.join(PUB,'admin.html')));
+// staff hub (sign-in + four cards) and the applications dashboard (moved under it)
+app.get('/admin',(req,res)=>res.sendFile(path.join(PUB,'hub.html')));
+app.get('/admin/applications',(req,res)=>res.sendFile(path.join(PUB,'admin.html')));
 
 // ---- Create New Tenancy (staff form + pack generator + email) ----
 require('./tenancy')(app, { requireAuth, data, PUB });
+
+// ---- Staff operations portal (hub, compliance, properties, repairs, tenants) ----
+require('./portal')(app, { requireAuth, PUB });
 
 app.listen(PORT,()=>{
   console.log('Gower sites running on http://localhost:'+PORT);

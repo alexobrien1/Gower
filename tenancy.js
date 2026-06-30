@@ -393,7 +393,7 @@ function packHTML(d){
 
   // 3 inventory
   var invRows = [['Room — walls &amp; ceiling',''],['Room — flooring',''],['Window &amp; sill / blind',''],['Room door &amp; lock',''],['Heating',''],['Smoke / heat alarm (tested)',''],['Bed &amp; mattress',''],['Wardrobe / storage',''],['Desk / drawers / chair',''],['Kitchenette (if in room)',''],['Shared kitchen items',''],['Keys / fobs issued','']];
-  docs.push('<section class="doc">'+head('Inventory &amp; schedule of condition')+'<h2>Inventory &amp; Schedule of Condition</h2>'+
+  docs.push('<section class="doc">'+head('Inventory & schedule of condition')+'<h2>Inventory &amp; Schedule of Condition</h2>'+
     kv([['Property / room',esc(prop)+' '+(P.type==='hmo'?'(room-only, HMO)':'')],['Contract-holder',tenant],['Date of inventory',dfmt(d.occupationDate)]])+
     '<p class="muted">Check on the occupation date; note any disagreement in writing within 7 days, otherwise taken as an accurate record. Condition: G good / F fair / note.</p>'+
     '<table class="grid"><tr><th>Item</th><th>Condition</th><th>Comments</th></tr>'+invRows.map(function(r){return '<tr><td>'+r[0]+'</td><td></td><td></td></tr>';}).join('')+'</table>'+
@@ -461,7 +461,7 @@ function packHTML(d){
     '<div class="sigs">'+sline(tenant+' (contract-holder)', tsig)+sline('For Gower Living', lsig)+'</div></section>');
 
   // 11 ID & right to occupy
-  docs.push('<section class="doc">'+head('Identity &amp; right-to-occupy record')+'<h2>Identity &amp; Right-to-Occupy Verification</h2>'+
+  docs.push('<section class="doc">'+head('Identity & right-to-occupy record')+'<h2>Identity &amp; Right-to-Occupy Verification</h2>'+
     '<p class="muted">For the landlord&rsquo;s own assurance and anti-money-laundering checks. The Right to Rent immigration check does not apply in Wales — this is identity verification only.</p>'+
     kv([['Contract-holder',tenant],['Date of birth',dfmt(d.dob)],['National Insurance number',esc(d.ni)],['Email',esc(d.email)],['Mobile',esc(d.mobile||'____')]])+
     '<table class="grid"><tr><th>Document</th><th>Reference</th><th>Seen by</th><th>Date</th></tr><tr><td>Photo ID (passport / driving licence)</td><td></td><td></td><td></td></tr><tr><td>Proof of address</td><td></td><td></td><td></td></tr><tr><td>Benefit / UC award notice</td><td></td><td></td><td></td></tr></table>'+
@@ -480,7 +480,7 @@ function packHTML(d){
     '<p><b>If you are working:</b> set up a standing order or direct debit for your rent (and service charge if your contract has one), paid in full each month to:</p>'+
     kv([['Account name','Gower Capital Group'],['Sort code','04-06-05'],['Account number','18499656'],['Reference','your name / room']])+
     '</section>');
-  docs.push('<section class="doc">'+head('Looking after your home &amp; house rules')+'<h2>Looking After Your Home</h2>'+
+  docs.push('<section class="doc">'+head('Looking after your home & house rules')+'<h2>Looking After Your Home</h2>'+
     '<p>A few small, regular jobs keep your home in good condition and head off bigger problems:</p>'+
     '<ul><li>Wipe down condensation and air your rooms; clean any mould with a solution of 1 part bleach to 4 parts water (or a mould cleaner).</li><li>Descale taps, showerheads, sinks and the kettle from time to time.</li><li>Keep sink and shower wastes clear with a drain cleaner.</li><li>Replace light bulbs, and change the batteries in smoke and carbon-monoxide alarms when they bleep.</li><li>Defrost the freezer and clean appliances and surfaces regularly, to keep everything working and hygienic.</li></ul>'+
     '<div class="sec">House rules for shared homes</div>'+
@@ -489,7 +489,7 @@ function packHTML(d){
     '<div class="sec">Energy &mdash; fair usage</div>'+
     '<p>Where gas and electricity are included in your rent, a <b>fair usage policy</b> applies. The monthly allowances are generous and you are unlikely to exceed them with sensible use. If usage is excessive, we may apply a supplemental charge for the amount over the allowance. Your allowance is set out in your agreement &mdash; just ask if you are unsure.</p>'+
     '</section>');
-  docs.push('<section class="doc">'+head('Safety, emergencies &amp; support')+'<h2>Staying Safe &amp; Getting Help</h2>'+
+  docs.push('<section class="doc">'+head('Safety, emergencies & support')+'<h2>Staying Safe &amp; Getting Help</h2>'+
     '<div class="sec">In an emergency</div>'+
     '<p>For anything that puts life or property at immediate risk, use the right emergency line first, then tell us:</p>'+
     kv([['Fire','Get out, stay out, call <b>999</b>'],['Gas leak / smell of gas','Open windows, don&rsquo;t touch switches, leave &mdash; National Gas Emergency <b>0800 111 999</b>'],['Electrical danger / power cut','Switch off at the consumer unit if safe &mdash; power-cut line <b>105</b>'],['Major water leak','Turn off at the stop tap'],['Medical emergency','<b>999</b>']])+
@@ -499,7 +499,7 @@ function packHTML(d){
     '<div class="sec">Settling in &mdash; your first week</div>'+
     '<ul><li>Take photos of the meter readings on your move-in day.</li><li>Register with a local GP and dentist.</li><li>Set up your rent (UC / Housing Benefit / direct debit) as above.</li><li>Download the Bidrento app.</li><li>Find out your bin and recycling days.</li><li>Consider contents insurance &mdash; the building is insured by us, but your belongings are not.</li></ul>'+
     '<div class="sec">If you need a hand &mdash; free, confidential support</div>'+
-    kv([['Mental health &amp; wellbeing','Samaritans <b>116 123</b> (free, 24/7) &middot; Mind &middot; your GP for local support'],['Money, benefits &amp; debt','Citizens Advice &middot; StepChange <b>0800 138 1111</b> &middot; Universal Credit <b>0800 328 5644</b>'],['Domestic abuse &amp; safety','Live Fear Free (Wales) <b>0808 80 10 800</b> (24/7)'],['Drugs &amp; alcohol','DAN 24/7 (Wales) <b>0808 808 2234</b>'],['Housing advice','Shelter Cymru <b>08000 495 495</b>'],['Food support','Ask us &mdash; we&rsquo;ll point you to your nearest food bank']])+
+    kv([['Mental health & wellbeing','Samaritans <b>116 123</b> (free, 24/7) &middot; Mind &middot; your GP for local support'],['Money, benefits & debt','Citizens Advice &middot; StepChange <b>0800 138 1111</b> &middot; Universal Credit <b>0800 328 5644</b>'],['Domestic abuse & safety','Live Fear Free (Wales) <b>0808 80 10 800</b> (24/7)'],['Drugs & alcohol','DAN 24/7 (Wales) <b>0808 808 2234</b>'],['Housing advice','Shelter Cymru <b>08000 495 495</b>'],['Food support','Ask us &mdash; we&rsquo;ll point you to your nearest food bank']])+
     '<p class="muted">Gower Living is part of Gower Capital Property Group. We&rsquo;re here to help your home work for you &mdash; get in touch any time at '+esc(LL.email)+'.</p>'+
     '</section>');
 
