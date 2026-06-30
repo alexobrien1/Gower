@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staff — Gower Capital Group</title>
+<link rel="icon" href="/assets/svg/gower-monogram-navy.svg">
+<link rel="stylesheet" href="/brand.css">
+<style>
+.pbody{background:var(--harbour);min-height:100vh;color:var(--cream)}
+.phead{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid #20384e}
+.phead .logo{height:30px}
+.hero{margin:34px 0 26px}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:1.9rem;margin:0 0 4px}
+.hero p{opacity:.82;margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.hcard{background:var(--coastal);border:1px solid #2c4a64;border-radius:16px;padding:24px;text-decoration:none;color:var(--cream);transition:.15s;display:block}
+.hcard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.hcard .ic{font-size:1.7rem;margin-bottom:10px}
+.hcard h3{font-family:var(--font-display);font-weight:600;font-size:1.2rem;margin:0 0 4px}
+.hcard p{opacity:.78;font-size:.86rem;margin:0}
+.hcard .n{display:inline-block;margin-top:12px;background:var(--gold);color:var(--harbour);border-radius:999px;padding:2px 11px;font-weight:700;font-size:.78rem}
+.gate{max-width:380px;margin:60px auto;background:var(--coastal);border-radius:16px;padding:34px;text-align:center}
+.gate h2{color:var(--cream);font-family:var(--font-display)}
+.gate input{width:100%;padding:11px 13px;border-radius:10px;border:1px solid #2c4a64;background:var(--harbour);color:var(--cream);font:inherit;margin:8px 0 12px}
+.err{color:#f0b3a8;font-size:.85rem;min-height:1.1em}
+.muted{opacity:.7;font-size:.82rem}
+</style>
+</head>
+<body class="pbody">
+<div class="wrap">
+  <div class="phead">
+    <img class="logo" src="/assets/svg/gower-capital-wordmark-cream.svg" alt="Gower Capital Group">
+    <button class="btn btn-ghost" style="color:var(--cream);display:none" id="logoutBtn">Sign out</button>
+  </div>
+
+  <div class="gate" id="gate" style="display:none">
+    <h2>Staff sign in<span class="gold">.</span></h2>
+    <input type="password" id="passcode" placeholder="Passcode" autocomplete="current-password">
+    <button class="btn btn-gold" id="loginBtn" style="width:100%">Open portal</button>
+    <p class="err" id="loginErr"></p>
+  </div>
+
+  <div id="panel" style="display:none">
+    <div class="hero">
+      <h1>Operations<span class="gold">.</span></h1>
+      <p>Everything for running the lettings — applications, tenants, properties and compliance in one place.</p>
+    </div>
+    <div class="cards">
+      <a class="hcard" href="/admin/applications">
+        <div class="ic">📥</div><h3>Applications</h3>
+        <p>Review and screen incoming housing applications.</p>
+        <span class="n" id="nApps">—</span>
+      </a>
+      <a class="hcard" href="/admin/tenants">
+        <div class="ic">👥</div><h3>Tenants</h3>
+        <p>Your contract-holders and their documents.</p>
+      </a>
+      <a class="hcard" href="/admin/properties">
+        <div class="ic">🏠</div><h3>Properties</h3>
+        <p>Condition reports and the repairs log, property by property.</p>
+      </a>
+      <a class="hcard" href="/admin/compliance">
+        <div class="ic">✅</div><h3>Compliance</h3>
+        <p>Every certificate, expiry and renewal across the portfolio.</p>
+        <span class="n" id="nComp" style="display:none">—</span>
+      </a>
+    </div>
+    <p class="muted" style="margin-top:22px"><a href="/admin/new-tenancy" style="color:var(--bright-gold)">+ Create a new tenancy</a></p>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+async function api(method,url,body){ const o={method,headers:{}}; if(body){o.headers['Content-Type']='application/json';o.body=JSON.stringify(body);} const r=await fetch(url,o); let j={}; try{j=await r.json();}catch(e){} return {ok:r.ok,json:j}; }
+async function boot(){
+  const me=await api('GET','/api/me');
+  if(me.json && me.json.auth){ show(); } else { $('#gate').style.display='block'; }
+}
+function show(){ $('#panel').style.display='block'; $('#logoutBtn').style.display='inline-block'; loadCounts(); }
+async function loadCounts(){
+  try{ const a=await api('GET','/api/applications'); if(a.json&&a.json.rows){ const n=a.json.rows.filter(r=>['New','Reviewing'].includes(r.status||'New')).length; $('#nApps').textContent=n+' active'; } }catch(e){}
+}
+async function doLogin(){ const r=await api('POST','/api/login',{password:$('#passcode').value}); if(r.ok){ $('#gate').style.display='none'; show(); } else { $('#loginErr').textContent='Wrong passcode — try again.'; } }
+$('#loginBtn').onclick=doLogin;
+$('#passcode').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+$('#logoutBtn').onclick=async()=>{ await api('POST','/api/logout'); location.reload(); };
+boot();
+</script>
+</body>
+</html>
